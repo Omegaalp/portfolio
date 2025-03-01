@@ -1,0 +1,5 @@
+This folder contains a personal project (originally written in Flash ActionScript but ported over to HTML/Javascript for obvious reasons) I have worked on for maybe a total of 1-2 months out of a 10 year span with the latest being in 2019.
+
+The intent is to make a very complex freeway simulator that will be a small part of a much larger project. The vehicles are represented with simple 2D rectangles currently until the project gets to the point of actually needing to be concerned with appearance. In its current form, the project spawns in vehicles, follows the perspective of the “main” vehicle, despawn vehicles if they get too far away from the “main” vehicle, has the vehicles accelerate to desired speeds and decelerate to avoid collisions with vehicles in front of them, and allows vehicles to decide and attempt to change lanes based on the speed of their lane and the lane(s) directly adjacent.
+
+There are plans to continue working on it once personal matters are a bit more in order (it has been a very rough set of past several years), but I believe it is worth showcasing in its current state as it does demonstrate some complex logic in Javascript.
