@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Account Setup</title>
+<style>
+div {
+float: left;
+padding: 15px;
+}
+body {
+color: black;
+background: white;
+color-scheme: light;
+}
+.darkModeBody {
+color: lightgray !important;
+background: black !important;
+color-scheme: dark !important;
+}
+.title {
+padding-top: 0px;
+padding-left: 0px;
+padding-bottom: 10px;
+font-size: 1.5em;
+font-weight: bold;
+width: 50%;
+}
+.nopadding {
+padding: 0px;
+}
+.accounts {
+display: flex;
+}
+.startHidden {
+display: none;
+}
+.notes {
+resize: none;
+height: 100px;
+}
+.blocky {
+display: flex;
+flex-direction: column;
+}
+button {
+margin: 3px;
+}
+.thinboy {
+margin: 0px;
+}
+.thinnerboy {
+width: 50px;
+}
+.spacer {
+margin: 10px;
+}
+.closer {
+padding: 2px;
+}
+.longboy {
+padding-top: 8px;
+}
+.truelongboy {
+width: 100%;
+}
+.longishboy {
+width: 85%;
+}
+.tallboy {
+height: 20px;
+padding-left: 5px;
+}
+.floater {
+float: right;
+}
+.noteDiv {
+width: 160px;
+}
+.noteAndButtons {
+width: 231px;
+}
+.sidePad {
+padding-left: 15px;
+}
+.moveDown {
+width: 10px;
+height: 30px;
+}
+.blackBack {
+background: black !important;
+}
+.stickyTop {
+position: fixed;
+top: 0;
+left: 0;
+padding-top: 0px;
+padding-left: 3px;
+width: 98%;
+z-index: 100;
+background: white;
+}
+.stickyBot {
+position: fixed;
+bottom: 0;
+left: 0;
+padding-bottom: 5px;
+padding-left: 5px;
+z-index: 100;
+background: white;
+}
+.infobox {
+width: 180px;
+height: 200px;
+}
+.main {
+}
+#page {
+padding-top: 122px;
+padding-bottom: 35px;
+width: 98%;
+}
+#numAcct {
+width: 30px;
+}
+h4 {
+margin-block-start: 1em;
+margin-block-end: 0.5em;
+}
+.acctTopHalf {
+padding-right: 15px;
+}
+.acctBotHalf {
+}
+.headerLeft {
+width: 485px;
+}
+.headerRight {
+display: flex;
+flex-direction: column;
+flex-grow: 1;
+}
+.tableContainer {
+padding-top: 10px;
+font-size: 14px;
+}
+.rightFloat {
+float: right;
+}
+#makeTableButton {
+float: right;
+margin-left: 5px;
+}
+#rfrshCsvs {
+padding-left: 3px;
+padding-right: 3px;
+}
+.whiteBorder {
+border-color: white !important;
+}
+table {
+border-style: solid;
+border-width: 1px;
+border-color: black;
+}
+tr {
+border-style: solid;
+border-width: 1px;
+border-color: inherit;
+}
+td {
+border-style: solid;
+border-width: 1px;
+border-color: inherit;
+}
+.flex-row {
+flex-direction: row;
+}
+.grid{
+display: grid;
+}
+.center{
+justify-self: center;
+}
+.alwaysBlack {
+color: black !important;
+}
+</style>
+<script src="./account.js"></script>
+</head>
+
+<body onload="startFunc()">
+<div id="page" name="page" class="nopadding">
+	<div id="header" name="header" class="stickyTop blocky flex-row">
+		<div class="headerLeft nopadding">
+			<div class="title">Account Setup</div>
+			<div class="blocky nopadding">
+				<div class="nopadding">
+					<button type="button" id="clear" name="clear" onclick="clearAll()">Clear All</button>
+					<button type="button" id="clearNotes" name="clearNotes" onclick="clearNotes('All')">Clear Notes</button>
+					<button type="button" id="addSpace" name="addSpace" onclick="addSpaces()">Add Spaces</button>
+					<button type="button" id="pullTicket" name="pullTicket" onclick="pull███████()">Pull Ticket</button>
+					<button type="button" id="copyEndDate" name="copyEndDate" onclick="addToClipboard('endDate')">Copy 12/31/9999</button>
+					<textarea id="codeForPages" name="codeForPages" class="startHidden"></textarea>
+					<input id="endDate" name="endDate" class="startHidden" value="12/31/9999"></input>
+				</div>
+				<div class="nopadding">
+					Default passwords:<br>
+					<button class="thinboy" type="button" id="████PassButton" name="████PassButton" onclick="addToClipboard('████Pass')">████</button>
+					<button type="button" id="█████████PassButton" name="█████████PassButton" onclick="addToClipboard('█████████Pass')">█████████</button>
+					<button class="thinboy" type="button" id="████████PassButton" name="████████PassButton" onclick="addToClipboard('████████Pass')">████████</button>
+					<button type="button" id="█████PassButton" name="█████PassButton" onclick="addToClipboard('█████Pass')">█████</button>
+					<input id="████Pass" name="████Pass" class="startHidden" value="███████1"></input>
+					<input id="█████████Pass" name="█████████Pass" class="startHidden" value="███████████████"></input>
+					<input id="████████Pass" name="████████Pass" class="startHidden" value="███████████████"></input>
+					<input id="█████Pass" name="█████Pass" class="startHidden" value="███████████████"></input>
+					<b>|</b>
+					<button class="rightFloat" type="button" id="makeTableButton" name="makeTableButton" onclick="makeTable()">Make Table</button>
+					<button class="rightFloat" type="button" id="rfrshCsvs" name="rfrshCsvs" onclick="startCsv()">Refresh CSVs</button>
+				</div>
+				<div class="closer">
+					<label for="numAcct">Number of Accounts:</label>
+					<input type="number" name="numAcct" id="numAcct" value="1">
+					</input>
+				</div>
+			</div>
+		</div>
+		<div class="headerRight nopadding">
+			<div class="longboy nopadding">
+				<div class="nopadding">Status:</div>
+				<div class="tallboy nopadding" id="statusBox">
+				</div>
+			</div>
+			<div class="truelongboy grid">
+				<div class="startHidden center" id="nextDiv">
+					<label for="consoleReply">Paste response</label>
+					<input type="text" id="consoleReply"></input>
+					<button type="button" id="consoleReplyButton">Parse/Next</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="provisionTable" name="provisionTable" class="tableContainer nopadding"></div>
+	<div class="main nopadding">
+		<div class="nopadding" id="allAccounts" name="allAccounts">
+			<h4>Account details</h4>
+			<div class="accounts" id="acct1" name="acct1"> 
+				<div class="acctTopHalf nopadding">
+					<div class="nopadding blocky flex-row truelongboy">
+						<div class="nopadding longishboy" id="acctName1" name="acctName1">
+							<b>Account 1:</b>
+						</div>
+						<div class="nopadding" id="revealer1" name="revealer1" onclick="revealMoreAcct(0)">v</div>
+					</div>
+					<br><br>
+					<label for="tickList1">Paste</label>
+					<input type="text" class="thinnerboy" id="tickList1" name="tickList1" autocomplete="off">
+					<button type="button" id="parse1" name="parse1" onclick="parseInput(0)">Parse</button>
+					<br><p class="spacer"></p>
+					<label for="tickType1">Ticket Type</label>
+					<select name="tickType1" id="tickType1">
+						<option hidden disabled selected value> </option>
+						<option value="newHire">New Hire</option>
+						<option value="transfer">Transfer</option>
+						<option value="reactivate">Reactivation</option>
+						<option value="term">Termination</option>
+						<option value="tempTerm">Termination - Temp</option>
+						<option value="dnSwap">DID<==>Non-DID</option>
+					</select>
+					<br><p class="spacer"></p>
+					<label for="itemNum1">Item Number:</label><br>
+					<input type="text" id="itemNum1" name="itemNum1">
+					<br><p class="spacer"></p>
+					<label for="phoneNum1">Phone Number:</label><br>
+					<input type="text" id="phoneNum1" name="phoneNum1"><button type="button" id="copy1c" name="copy1c" onclick="addToClipboard('phoneNum1')">Copy</button>
+					<br><p class="spacer"></p>
+					<label for="uname1">Username:</label><br>
+					<input type="text" id="uname1" name="uname1"><button type="button" id="copy10" name="copy10" onclick="addToClipboard('uname1')">Copy</button>
+					<br><p class="spacer"></p>
+					<label for="fname1">First name:</label><br>
+					<input type="text" id="fname1" name="fname1" class="firstName"><button type="button" id="copy11" name="copy11" onclick="addToClipboard('fname1')">Copy</button>
+					<br><p class="spacer"></p>
+					<label for="lname1">Last name:</label><br>
+					<input type="text" id="lname1" name="lname1" class="lastName"><button type="button" id="copy12" name="copy12" onclick="addToClipboard('lname1')">Copy</button>
+					<br><p class="spacer"></p>
+					<label for="fullname1">Full name:</label><br>
+					<input type="text" readonly id="fullname1" name="fullname1" class="fullName"><button type="button" id="copy13" name="copy13" onclick="addToClipboard('fullname1')">Copy</button>
+					<br><p class="spacer"></p>
+					<label for="eaddy1">Email address:</label><br>
+					<input type="text" id="eaddy1" name="eaddy1"><button type="button" id="copy14" name="copy14" onclick="addToClipboard('eaddy1')">Copy</button>
+				</div>
+				<div class="acctBotHalf nopadding">
+					<label for="role1">Role:</label><br>
+					<input type="text" id="role1" name="role1"><button type="button" id="copy16" name="copy16" onclick="addToClipboard('role1')">Copy</button>
+					<br><p class="spacer"></p>
+					<label for="startDate1">Effective Date:</label><br>
+					<input type="Date" id="startDate1" name="startDate1">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<button type="button" id="copy19" name="copy19" onclick="addToClipboard('startDate1')">Copy</button>
+					<br><p class="spacer"></p>
+					<label for="info1">Info:</label><br>
+					<textarea id="info1" name="info1" class="infobox" readonly></textarea>
+					<br><p class="spacer"></p>
+					<div class="noteAndButtons nopadding">
+						<div class="closer noteDiv">
+							<label for="notes1">Notes:</label><br>
+							<textarea id="notes1" name="notes1" class="notes" readonly></textarea>
+						</div>
+						<div class="floater moveDown closer"></div>
+						<div class="floater closer">
+							<button type="button" id="copy1a" name="copy1a" onclick="addToClipboard('notes1')">Copy</button>
+						</div>
+						<div class="floater closer">
+							<button type="button" id="clearNote1" name="clearNote1" onclick="clearNotes('notes1')">Clear</button>
+						</div>
+					</div>
+				</div>
+				<div class="startHidden nopadding sidePad" id="toggleAcct1" name="toggleAcct1">
+					<label for="███Name1">███ Profile Name:</label>
+					<button type="button" class="thinboy" id="generate███1" name="generate███1" onclick="generate███('███Name1')">Generate</button>
+					<br>
+					<input type="text" id="███Name1" name="███Name1"><button type="button" id="copy1b" name="copy1b" onclick="addToClipboard('███Name1')">Copy</button>
+					<br><p class="spacer"></p>
+					<label for="oldPhoneNum1">Old Phone Number:</label><br>
+					<input type="text" id="oldPhoneNum1" name="oldPhoneNum1"><button type="button" id="copy1f" name="copy1f" onclick="addToClipboard('oldPhoneNum1')">Copy</button>
+					<br><p class="spacer"></p>
+					<label for="███uname1">Valid ███ Username:</label>
+					<button type="button" class="thinboy" id="generate███1" name="generate███1" onclick="generate███('███uname1')">Generate</button>
+					<br>
+					<input type="text" id="███uname1" name="███uname1"><button type="button" id="copy15" name="copy15" onclick="addToClipboard('███uname1')">Copy</button>
+					<br><p class="spacer"></p>
+					<label for="███id1">███ ID#:</label><br>
+					<input type="text" id="███id1" name="███id1"><button type="button" id="copy1d" name="copy1d" onclick="addToClipboard('███id1')">Copy</button>
+					<br><p class="spacer"></p>
+					<label for="████uname1">████████ Username (if different):</label><br>
+					<input type="text" id="████uname1" name="████uname1"><button type="button" id="copy1e" name="copy1e" onclick="addToClipboard('████uname1')">Copy</button>
+					<br><p class="spacer"></p>
+					<label for="locale1">Location:</label><br>
+					<select id="locale1" name="locale1">
+						<option hidden disabled selected value></option>
+						<option value="██████">██████</option>
+						<option value="████">████</option>
+						<option value="███████████">███████████</option>
+						<option value="██">██</option>
+						<option value="███████████">███████████</option>
+						<option value="███">███</option>
+						<option value="█████">█████</option>
+						<option value="█████">█████</option>
+					</select>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<button type="button" id="copy17" name="copy17" onclick="addToClipboard('locale1')">Copy</button>
+					<br><p class="spacer"></p>
+					<label for="manager1">Manager:</label><br>
+					<input type="text" id="manager1" name="manager1"><button type="button" id="copy18" name="copy18" onclick="addToClipboard('manager1')">Copy</button>
+					<br><p class="spacer"></p>
+					<label for="department1">Department:</label><br>
+					<input type="text" id="department1" name="department1"><button type="button" id="copy1g" name="copy1g" onclick="addToClipboard('department1')">Copy</button>
+				</div>
+				<div class="startHidden nopadding">
+					<input class="startHidden" type="text" id="mirrorUser1" name="mirrorUser1">
+					<input class="startHidden" type="text" id="codeForAcct1" name="codeForAcct1">
+				</div>
+			</div>
+		</div>
+		<div class="blocky" id="footer" name="footer">
+			<div class="startHidden nopadding" id="openSystems" name="openSystems">
+				<h4>Open system</h4>
+				<button type="button" id="o███████" name="o███████" onclick="open███████()">██████████</button>
+				<button type="button" id="o█████" name="o█████" onclick="open█████()">█████ ██████████████</button>
+				<button type="button" id="o█████" name="o█████" onclick="open█████()">█████</button>
+				<button type="button" id="o███████" name="o███████" onclick="open███████()">█████████ ██████████████</button>
+				<button type="button" id="o██████" name="o██████" onclick="open██████()">███ ███</button>
+				<button type="button" id="o██████" name="o██████" onclick="open██████()">███ ███</button>
+				<button type="button" id="o████" name="o████">████████</button>
+				<button type="button" id="o███" name="o███">█████████</button>
+				<button type="button" id="o████" name="o████">████/███████</button>
+				<br>
+				<button type="button" id="o███" name="o███">███</button>
+				<button type="button" id="o██████" name="o██████">███ ██████████████</button>
+				<button type="button" id="o█████" name="o█████">█████████</button>
+				<button type="button" id="o████r" name="o████r">████████</button>
+				<button type="button" id="o████████" name="o████████">████████ ██████████████</button>
+				<button type="button" id="o███████" name="o███████">███████</button>
+				<button type="button" id="o█████" name="o█████">█████</button>
+				<button type="button" id="o██████" name="o██████">█████ ███ █████████</button>
+				<button type="button" id="o████" name="o████">████</button>
+			</div>
+			<div class="nopadding" id="makeSystems" name="makeSystems">
+			<h4>Make account in system</h4>
+				<button type="button" id="b███████" name="b███████" onclick="pull███████()">██████████</button>
+				<button type="button" id="b█████" name="b█████" onclick="create█████(0)">█████ ██████████████</button>
+				<button class="startHidden" type="button" id="b█████" name="b█████" onclick="create█████()">█████</button>
+				<button class="startHidden" type="button" id="b███████" name="b███████">█████████ ██████████████</button>
+				<button class="startHidden" type="button" id="b██████" name="b██████" onclick="create██████()">███ ███</button>
+				<button class="startHidden" type="button" id="b██████" name="b██████" onclick="create██████()">███ ███</button>
+				<button type="button" id="b████" name="b████" onclick="create████()">████████</button>
+				<button type="button" id="b███" name="b███" onclick="create███()">█████████</button>
+				<button class="startHidden" type="button" id="b████" name="b████">████/███████</button>
+				<br>
+				<button class="startHidden" type="button" id="b███" name="b███">███</button>
+				<button class="startHidden" type="button" id="b██████" name="b██████">███ ██████████████</button>
+				<button class="startHidden" type="button" id="b█████" name="b█████">█████████</button>
+				<button class="startHidden" type="button" id="b████r" name="b████r">████████</button>
+				<button class="startHidden" type="button" id="b████████" name="b████████">████████ ██████████████</button>
+				<button class="startHidden" type="button" id="b███████" name="b███████">███████</button>
+				<button class="startHidden" type="button" id="b█████" name="b█████">█████</button>
+				<button class="startHidden" type="button" id="b██████" name="b██████">█████ ███ █████████</button>
+				<button class="startHidden" type="button" id="b████" name="b████">████</button>
+			</div>
+			<div class="nopadding" id="noteSystems" name="noteSystems">
+				<h4>Make notes for system</h4>
+				<button type="button" id="n███████" name="n███████" onclick="notate███████()">██████████</button>
+				<button type="button" id="nnothing" name="nnothing" onclick="notateNothing()">No Provisioning</button>
+				<button type="button" id="n█████" name="n█████" onclick="notate█████()">█████ ██████████████</button>
+				<button type="button" id="n█████" name="n█████" onclick="notate█████()">█████</button>
+				<button type="button" id="n███████" name="n███████" onclick="notate█████████()">█████████ ██████████████</button>
+				<button type="button" id="n██████" name="n██████" onclick="notate██████()">███ ███</button>
+				<button type="button" id="n██████" name="n██████" onclick="notate██████()">███ ███</button>
+				<button type="button" id="n████" name="n████" onclick="notate████()">████████</button>
+				<button type="button" id="n███" name="n███" onclick="notate███()">█████████</button>
+				<br>
+				<button type="button" id="n████" name="n████" onclick="notate████()">████</button>
+				<button type="button" id="n████" name="n████" onclick="notate████()">████/███████</button>
+				<button type="button" id="n███" name="n███" onclick="notate███()">███</button>
+				<button type="button" id="n████" name="n████" onclick="notate███████()">████ █████</button>
+				<button type="button" id="n██████" name="n██████" onclick="notate███████()">███ █████████</button>
+				<button type="button" id="n█████" name="n█████" onclick="notate██()">█████████</button>
+				<button type="button" id="n█████████" name="n█████████" onclick="notate█████████()">████████ ███████████</button>
+				<button type="button" id="n█████████" name="n█████████" onclick="notate█████████()">████████ ████</button>
+				<button type="button" id="n████████" name="n████████" onclick="notate█████████()">████████ ██████████████</button>
+				<br>
+				<button type="button" id="n██████" name="n██████" onclick="notate████████()">███ ██████████████</button>
+				<button type="button" id="n███████" name="n███████" onclick="notate███████()">███████</button>
+				<button type="button" id="n█████" name="n█████" onclick="notate█████()">█████</button>
+				<button type="button" id="n██████" name="n██████" onclick="notate██████()">█████ ███ █████████</button>
+				<button type="button" id="n█████" name="n█████" onclick="notate███████████()">███████████ ██████</button>
+				<button type="button" id="n███" name="n███" onclick="notate███()">███</button>
+				<button type="button" id="n██████" name="n██████" onclick="notate██████()">██ ████</button>
+				<button type="button" id="n██████" name="n██████" onclick="notate█████████()">█████████</button>
+				<button type="button" id="n███████" name="n███████" onclick="notate████████████()">███████ █████</button>
+				<button type="button" id="n██████" name="n██████" onclick="notate███████████()">█████ ██████</button>
+				<br><br>
+				<button type="button" id="noteAllPhone" name="noteAllPhone" onclick="notateAll('one')">Notate All (Phone)</button>
+				<button type="button" id="noteAllSys" name="noteAllSys" onclick="notateAll('two')">Notate All (Systems)</button>
+			</div>
+			<div class="nopadding" id="divForChecks" name="divForChecks">
+				<h4>Select Accounts</h4>
+				<div class="closer" id="checkDiv1" name="checkDiv1">
+				<input type="checkbox" id="check1" name="check1" value="1">
+				<label for="check1">1</label>
+				</div>
+				<button id="checkAll" name="checkAll" onclick="checkAllBoxes()">Check all boxes</button>
+				<button id="clearCheck" name="clearCheck" onclick="clearCheckBoxes()">Clear boxes</button>&emsp;|&emsp;
+				<button id="clearAcct" name="clearAcct" onclick="clearAccount()">Clear accounts</button>
+				<button id="removeAcct" name="removeAcct" onclick="removeAccount()">Remove accounts</button>
+			</div>
+		</div>
+		<div class="nopadding" id="pagePlace"></div>
+	</div>
+	<div class="stickyBot nopadding" id="trueFoot" name="trueFoot">
+		<button id="jumpTop" name="jumpTop" onclick="jumpToTop()">Jump to top</button>
+		<button id="darkButton" name="darkButton" onclick="darkMode()">Dark Mode</button>
+	</div>
+</div>
+</body>
+
+
+</html>
