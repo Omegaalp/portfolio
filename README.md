@@ -8,9 +8,13 @@ Anything relating to previous employers has been redacted for privacy purposes. 
 Details and context are included in the readme for each folder.
 
 A brief description of the folders included:
+
 Account Setup - a work related web based app containing HTML5, CSS, JavaScript, and Excel components
+
 Daily Commute - a personal project comprised of HTML and Javascript
+
 Documentation - work related written processes, proposals and other documents
+
 Powershell - work related powershell scripts
 
 Licensing Notice:
